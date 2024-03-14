@@ -1,0 +1,29 @@
+weather_params = {
+
+    "lat": 43.8828,
+    "lon": -79.4403,
+    "appid": "e08d3f09710e38f079d5b5fd9eea4e6f",
+    'units': 'metric' 
+}
+
+response = requests.get("https://api.openweathermap.org/data/2.5/forecast", params=weather_params)
+data = response.json()
+print(data['list'][0]['main']['temp'])
+
+
+
+
+import requests
+from flask import Flask, render_template
+
+app = Flask(__name__)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+
+def get_weather_data():
+    return 0
+
+if __name__ == "__main__":
+    app.run(debug=True) 
