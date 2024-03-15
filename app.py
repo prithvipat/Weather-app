@@ -1,28 +1,25 @@
-import requests
-from flask import Flask, render_template
+ 
+from flask import Flask, request, render_template
+from weather import weather
 
+app = Flask(__name__)
 
-def get_weather(city_name, api_key):
-    base_url = "https://api.openweathermap.org/data/2.5/weather?={city}"
-    params = {
-        "q": city_name,
-        "appid": api_key,
-        "units": "metric",
-    }
+@app.route('/')
+@app.route('/index')
+def index():
+    return render_template('index.html')
 
-    response = requests.get(base_url, params=params)
-    data = response.json()
-
-    temperature = data["main"]["temp"]
-    description = data["weather"][0]["description"]
-    wind = data['wind']['speed']
-    feels_like = data['main']['feels_like']
-    print(f"Weather in {city_name}: {description}, Temperature: {temperature}°C "
-          f"Feels Like {feels_like}°C, Wind {wind} KM/H")
-
+@app.route('/weather')
+def get_weather():
+    city = request.args.get('city')
+    weather_data = weather(city)
+    return render_template(
+        "weather.html",
+        title=weather_data['name'],
+        temp=f"{weather_data['main']['temp']:.1f}",
+        description=f"{weather_data['weather'][0]['description']}",
+        wind=f"{weather_data['main']['feels_like']}"
+    )
 
 if __name__ == "__main__":
-    city = input("Enter the city name: ")
-    API_KEY = "API KEY" 
-    get_weather(city, API_KEY)
-
+    app.run(host="0.0.0.0", port=8000)
