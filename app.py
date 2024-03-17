@@ -1,11 +1,16 @@
+ 
 from flask import Flask, request, render_template
 from weather import weather
 from datetime import datetime
 
 day = datetime.today().weekday()
-weekdates = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday',]
+weekdates = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday','Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday']
 weekday = weekdates[day]
 arr = [weekdates[day + 1], weekdates[day + 2], weekdates[day + 3], weekdates[day + 4]]
+
+current_day = datetime.now()
+month = current_day.strftime("%B")
+day_num = current_day.day
 
 app = Flask(__name__)
 
@@ -27,11 +32,12 @@ def get_weather():
     else:
         return render_template(
             "weather.html",
-            day=weekday,
+            day=f"{weekday} {month} {day_num}",
             title=weather_data['name'],
             temp=f"{weather_data['main']['temp']:.1f}",
             description=f"{weather_data['weather'][0]['description']}",
-            wind=f"{weather_data['main']['feels_like']}"
+            feels_like=f"{weather_data['main']['feels_like']}",
+            img= "sun.png"
             )
 
 if __name__ == "__main__":
