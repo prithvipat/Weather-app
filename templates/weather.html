@@ -4,18 +4,49 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{{ title }} Weather</title>
-    <link href="{{ url_for('static', filename='styles/style.css')}}" rel="stylesheet"/>
-
+    <link href="{{ url_for('static', filename='styles/style.css')}}" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=NTR&display=swap" rel="stylesheet">
 </head>
 <body>
     <h1>{{ title }} Weather</h1>
-    <p>{{ status }} and {{ temp }} &deg;</p>
-    <p>Feels Like {{ wind }} &deg;</p>
-    
-    <form action="/weather">
-        <input type="text" name="city", id="city" placeholder="Enter a city" />
-        <button type="submit">Submit</button>
-    </form>
-
+    <div class="input_boxes">
+        <form action="/weather">
+            <input type="text" name="city" id="city" placeholder="Enter a city">
+            <button type="submit">Enter</button>
+        </form>
+    </div> 
+    <div class="container">
+        <div class="weather-container">
+            <div class="weather-data">
+                <div class="day">
+                    <p>{{ day }}</p>    
+                </div>
+                <div class="temp">
+                    <p>{{ temp }}&deg;</p>
+                    <div class="feelslike">
+                        <p>Feels Like {{ feels_like }}&deg;</p>
+                    </div>
+                    <img src="{{ url_for('static', filename=img) }}">
+                </div>
+                <div class="description">
+                    <p> {{ description }}</p>
+                </div>
+            </div>
+            <div class="forecast">
+                <div class="day-one">
+                    <p>{{ dayOne }}</p>
+                    <p>{{ tempDay1 }}&deg;</p>
+                    <img src="{{ url_for('static', filename=imgDay1) }}">
+                </div>
+                <div class="day-two">
+                    <p>{{ dayTwo }}</p>
+                    <p>{{ tempDay2 }}&deg;</p>
+                    <img src="{{ url_for('static', filename=imgDay2) }}">
+                </div>
+            </div>
+        </div>
+    </div>
 </body>
 </html>
