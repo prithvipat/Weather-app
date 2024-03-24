@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error</title>
+    <link href="{{ url_for('static', filename='styles/error.css')}}" rel="stylesheet"/>    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=NTR&display=swap" rel="stylesheet">
+
+</head>
+<body>
+    <h1>Error</h1>
+    <p>City not Found</p>
+    <form action="/weather">
+        <input type="text" name="city", id="city" placeholder="Enter a city" />
+        <button type="submit">Submit</button>
+    </form>
+    <img src="{{ url_for('static', filename='giphy.gif') }}">
+</body>
+</html>
