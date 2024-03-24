@@ -9,15 +9,19 @@
 
 body {
     background-color: #f0f0f0;
+    font-size: 16px;
+    line-height: 1.6;
 }
 
 .container {
-    max-width: 800px;
+    max-width: 400px;
+    margin: 0 auto;
 }
 
 h1 {
     text-align: center;
     color: #333;
+    padding: 10px 0;
 }
 
 .input_boxes {
@@ -40,13 +44,15 @@ input[type="text"]:hover {
 }
 
 button {
-    padding: 10px 20px;
+    height: 50px;
+    width: 70px;
     background-color: #4285f4;
     color: #fff;
     border: none;
     border-radius: 20px;
     cursor: pointer;
     font-size: 16px;
+    margin-left: 10px;
 }
 
 button:hover {
@@ -57,52 +63,101 @@ button:hover {
     display: flex;
     justify-content: center;
     align-items: center;
-
+    flex-wrap: wrap;
+    margin-top: 20px;
 }
 
 .weather-data {
-    width: 400px;
+    flex: 1;
     background-color: #fff;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    height: 500px;
+    margin: 10px;
+    height: 410px;
+}
+
+.temp, .day {
+    text-align: center;
+    position:relative;
+    bottom: 15px;
+}
+
+.day { 
+    padding-top: 15px;
+    font-size: 30px;
+
 }
 
 .temp {
-    font-size: 24px;
-    color: #333;
+    font-size: 30px;
+    color: coral;
+    bottom: 25px;
+
+}
+
+.feelslike {
+    font-size: 15px;
+    position:relative;
+    bottom: 15px;
+}
+
+.description {
     text-align: center;
+    position:relative;
+    bottom: 50px;
 }
 
-.feel {
-    font-size: 18px;
-    color: #555;
-    text-align: center;
-}
-
-.day {
-    padding-left: 20px;
-    font-size: 25px;
-    color: #555;
-    text-align: center;
-    padding-bottom: -50px;
-}
-
-.future-dates {
-    text-align:right;
-}
-
-img {
-    animation: animate 3s infinite alternate; /* Adjust duration as needed */
+.temp img {
+    animation: animate 2.5s infinite alternate; 
     transform-origin: center;
+    position:relative;
+    bottom: 15px;
 }
 
 @keyframes animate {
     0% {
-      transform: scale(1) rotate(0deg);
+      transform: scale(1);
     }
     
     100% {
-      transform: scale(1.3) rotate(360deg);
+      transform: scale(1.1);
     }
-  }
+}
+
+.forecast {
+    display: flex;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.day-one, .day-two {
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 175px;
+    height: 200px;
+    font-size: 18px;
+    background-color: lightblue;
+    text-align: center;
+}
+
+.day-one {
+    color: red;
+    margin-right: 15px;
+
+}
+
+.day-two {
+    color: coral;
+    margin-left: 15px;
+}
+
+.day-two img, .day-one img {
+    transform-origin: center;
+    height: 100px;
+    display: flex;
+    justify-content: center;
+}
